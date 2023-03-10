@@ -48,6 +48,41 @@ public class KeyHandler implements KeyListener {
     public boolean n;
     public boolean m;
 
+    public boolean Q;
+    public boolean W;
+    public boolean E;
+    public boolean R;
+    public boolean T;
+    public boolean Y;
+    public boolean U;
+    public boolean I;
+    public boolean O;
+    public boolean P;
+    public boolean A;
+    public boolean S;
+    public boolean D;
+    public boolean F;
+    public boolean G;
+    public boolean H;
+    public boolean J;
+    public boolean K;
+    public boolean L;
+    public boolean Z;
+    public boolean X;
+    public boolean C;
+    public boolean V;
+    public boolean B;
+    public boolean N;
+    public boolean M;
+
+    // --- Symbols --------------------------------------------------------------------------------------------------
+
+    public boolean backSlash;
+    public boolean slash;
+    public boolean exa;
+    public boolean questionMark;
+    public boolean percentage;
+
     // --- Action Keys --------------------------------------------------------------------------------------------------
 
     public boolean escape;
@@ -59,7 +94,7 @@ public class KeyHandler implements KeyListener {
     public boolean ctrl;
     public boolean control;
     public boolean tab;
-    public boolean backSlash;
+    public boolean alt;
 
     // === FUNCTIONS ==================================================================================================== TODO
 
@@ -114,81 +149,211 @@ public class KeyHandler implements KeyListener {
 
         if(keyCode == KeyEvent.VK_Q) {
             q = true;
+
+            if(maiusc == true)
+            {
+                Q = true;
+            }
         }
         if(keyCode == KeyEvent.VK_W) {
             w = true;
+
+            if(maiusc == true)
+            {
+                W = true;
+            }
         }
         if(keyCode == KeyEvent.VK_E) {
             e = true;
+
+            if(maiusc == true)
+            {
+                E = true;
+            }
         }
         if(keyCode == KeyEvent.VK_R) {
             r = true;
+
+            if(maiusc == true)
+            {
+                R = true;
+            }
         }
         if(keyCode == KeyEvent.VK_T) {
             t = true;
+
+            if(maiusc == true)
+            {
+                T = true;
+            }
         }
         if(keyCode == KeyEvent.VK_Y) {
             y = true;
+
+            if(maiusc == true)
+            {
+                Y = true;
+            }
         }
         if(keyCode == KeyEvent.VK_U) {
             u = true;
+
+            if(maiusc == true)
+            {
+                U = true;
+            }
         }
         if(keyCode == KeyEvent.VK_I) {
             i = true;
+
+            if(maiusc == true)
+            {
+                I = true;
+            }
         }
         if(keyCode == KeyEvent.VK_O) {
             o = true;
+
+            if(maiusc == true)
+            {
+                O = true;
+            }
         }
         if(keyCode == KeyEvent.VK_P) {
             p = true;
+
+            if(maiusc == true)
+            {
+                P = true;
+            }
         }
         if(keyCode == KeyEvent.VK_A) {
             a = true;
+
+            if(maiusc == true)
+            {
+                A = true;
+            }
         }
         if(keyCode == KeyEvent.VK_S) {
             s = true;
+
+            if(maiusc == true)
+            {
+                S = true;
+            }
         }
         if(keyCode == KeyEvent.VK_D) {
             d = true;
+
+            if(maiusc == true)
+            {
+                D = true;
+            }
         }
         if(keyCode == KeyEvent.VK_F) {
             f = true;
+
+            if(maiusc == true)
+            {
+                F = true;
+            }
         }
         if(keyCode == KeyEvent.VK_G) {
             g = true;
+
+            if(maiusc == true)
+            {
+                G = true;
+            }
         }
         if(keyCode == KeyEvent.VK_H) {
             h = true;
+
+            if(maiusc == true)
+            {
+                H = true;
+            }
         }
         if(keyCode == KeyEvent.VK_J) {
             j = true;
+
+            if(maiusc == true)
+            {
+                J = true;
+            }
         }
         if(keyCode == KeyEvent.VK_K) {
             k = true;
+
+            if(maiusc == true)
+            {
+                K = true;
+            }
         }
         if(keyCode == KeyEvent.VK_L) {
             l = true;
+
+            if(maiusc == true)
+            {
+                L = true;
+            }
         }
         if(keyCode == KeyEvent.VK_Z) {
             z = true;
+
+            if(maiusc == true)
+            {
+                Z = true;
+            }
         }
         if(keyCode == KeyEvent.VK_X) {
             x = true;
+
+            if(maiusc == true)
+            {
+                X = true;
+            }
         }
         if(keyCode == KeyEvent.VK_C) {
             c = true;
+
+            if(maiusc == true)
+            {
+                C = true;
+            }
         }
         if(keyCode == KeyEvent.VK_V) {
             v = true;
+
+            if(maiusc == true)
+            {
+                V = true;
+            }
         }
         if(keyCode == KeyEvent.VK_B) {
             b = true;
+
+            if(maiusc == true)
+            {
+                B = true;
+            }
         }
         if(keyCode == KeyEvent.VK_N) {
             n = true;
+
+            if(maiusc == true)
+            {
+                N = true;
+            }
         }
         if(keyCode == KeyEvent.VK_M) {
             m = true;
+
+            if(maiusc == true)
+            {
+                M = true;
+            }
         }
 
         // --- Action Keys --------------------------------------------------------------------------------------------------
@@ -222,6 +387,10 @@ public class KeyHandler implements KeyListener {
         if(keyCode == KeyEvent.VK_TAB)
         {
             tab = true;
+        }
+        if(keyCode == KeyEvent.VK_ALT)
+        {
+            alt = true;
         }
 
     } // TODO
@@ -271,81 +440,107 @@ public class KeyHandler implements KeyListener {
 
         if(keyCode == KeyEvent.VK_Q) {
             q = false;
+            Q = false;
         }
         if(keyCode == KeyEvent.VK_W) {
             w = false;
+            W = false;
         }
         if(keyCode == KeyEvent.VK_E) {
-            e = false;
+            e = true;
+            E = false;
         }
         if(keyCode == KeyEvent.VK_R) {
-            r = false;
+            r = true;
+            R = false;
         }
         if(keyCode == KeyEvent.VK_T) {
-            t = false;
+            t = true;
+            T = false;
         }
         if(keyCode == KeyEvent.VK_Y) {
-            y = false;
+            y = true;
+            Y = false;
         }
         if(keyCode == KeyEvent.VK_U) {
-            u = false;
+            u = true;
+            U = false;
         }
         if(keyCode == KeyEvent.VK_I) {
-            i = false;
+            i = true;
+            I = false;
         }
         if(keyCode == KeyEvent.VK_O) {
-            o = false;
+            o = true;
+            O = false;
         }
         if(keyCode == KeyEvent.VK_P) {
-            p = false;
+            p = true;
+            P = false;
         }
         if(keyCode == KeyEvent.VK_A) {
-            a = false;
+            a = true;
+            A = false;
         }
         if(keyCode == KeyEvent.VK_S) {
-            s = false;
+            s = true;
+            S = false;
         }
         if(keyCode == KeyEvent.VK_D) {
-            d = false;
+            d = true;
+            D = false;
         }
         if(keyCode == KeyEvent.VK_F) {
-            f = false;
+            f = true;
+            F = false;
         }
         if(keyCode == KeyEvent.VK_G) {
-            g = false;
+            g = true;
+            G = false;
         }
         if(keyCode == KeyEvent.VK_H) {
-            h = false;
+            h = true;
+            H = false;
         }
         if(keyCode == KeyEvent.VK_J) {
-            j = false;
+            j = true;
+            J = false;
         }
         if(keyCode == KeyEvent.VK_K) {
-            k = false;
+            k = true;
+            K = false;
         }
         if(keyCode == KeyEvent.VK_L) {
-            l = false;
+            l = true;
+            L = false;
         }
         if(keyCode == KeyEvent.VK_Z) {
-            z = false;
+            z = true;
+            Z = false;
         }
         if(keyCode == KeyEvent.VK_X) {
-            x = false;
+            x = true;
+            X = false;
         }
         if(keyCode == KeyEvent.VK_C) {
-            c = false;
+            c = true;
+            C = false;
         }
         if(keyCode == KeyEvent.VK_V) {
-            v = false;
+            v = true;
+            V = false;
         }
         if(keyCode == KeyEvent.VK_B) {
-            b = false;
+            b = true;
+            B = false;
         }
         if(keyCode == KeyEvent.VK_N) {
-            n = false;
+            n = true;
+            N = false;
         }
         if(keyCode == KeyEvent.VK_M) {
-            m = false;
+            m = true;
+            M = false;
         }
 
         // --- Action Keys --------------------------------------------------------------------------------------------------
@@ -379,6 +574,10 @@ public class KeyHandler implements KeyListener {
         if(keyCode == KeyEvent.VK_TAB)
         {
             tab = false;
+        }
+        if(keyCode == KeyEvent.VK_ALT)
+        {
+            alt = false;
         }
 
     }//

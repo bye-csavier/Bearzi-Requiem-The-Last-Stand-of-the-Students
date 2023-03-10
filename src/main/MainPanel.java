@@ -1,34 +1,42 @@
 package main;
 
+import extra.*;
+
 import javax.swing.*;
 import java.awt.*;
 
-@SuppressWarnings("unused")
 public class MainPanel extends JPanel implements Runnable{
 
     //=== PANEL VARIABLES ====================================================================================================================
 
     //---- Panel logic variables ---------------------------------------------------------------------------------------------------------------
+
     Thread gameThread;
 
+    //public Camera camera;
+
+    KeyHandler keyLog = new KeyHandler();
+
     //---- General graphics variables ---------------------------------------------------------------------------------------------------------------
+
     public enum PanelMode{
         MENU;
 
+        /*
         @Override
         public String toString() {
-            switch(this)
-            {
+            switch (this) {
 
-                case MENU:{
+                case MENU -> {
                     return "menu";
                 }
-
-                default : {
-                    return "none";
+                default -> {
+                    return "unknown";
                 }
             }
         }
+        */
+
     }
 
     protected PanelMode panelState = PanelMode.MENU;
@@ -50,7 +58,6 @@ public class MainPanel extends JPanel implements Runnable{
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        //this.addKeyListener(keyLog);
         this.setFocusable(true);
 
         this.VIEW_HEIGHT = ( (double) screenHeight) /100;
@@ -66,6 +73,11 @@ public class MainPanel extends JPanel implements Runnable{
             this.VIEW_MIN = this.VIEW_HEIGHT;
             this.VIEW_MAX = this.VIEW_WIDTH;
         }
+
+        //this.camera = new Camera(0,0,0,0);
+
+        this.addKeyListener(this.keyLog);
+
     }
 
     //=== FUNCTIONS ====================================================================================================================
@@ -84,7 +96,7 @@ public class MainPanel extends JPanel implements Runnable{
 
             int FPS = 60;
             public double delta;
-            final double drawInterval = 1000000000/FPS;
+            final double drawInterval = 1000000000.0/FPS;
             long lastTime = System.nanoTime();
             long curTime;
 
@@ -92,7 +104,7 @@ public class MainPanel extends JPanel implements Runnable{
             long timer = 0;
             int drawCount = 0;
 
-        //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+        //!-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
     @Override
     public void run()
@@ -155,42 +167,34 @@ public class MainPanel extends JPanel implements Runnable{
 
     public int getVW(double percentage)
     {
-        double value = this.VIEW_WIDTH * percentage;
+        double value = (this.VIEW_WIDTH /*+ this.camera.camZoom*/) * percentage;
         return (int) value;
     }
 
     public int getVH(double percentage)
     {
-        double value = this.VIEW_HEIGHT * percentage;
+        double value = (this.VIEW_HEIGHT /*+ this.camera.camZoom*/) * percentage;
         return (int) value;
     }
 
     public int getVMIN(double percentage)
     {
-        double value = this.VIEW_MIN * percentage;
+        double value = (this.VIEW_MIN /*+ this.camera.camZoom*/) * percentage;
         return (int) value;
     }
 
     public int getVMAX(double percentage)
     {
-        double value = this.VIEW_MAX * percentage;
+        double value = (this.VIEW_MAX /*+ this.camera.camZoom*/) * percentage;
         return (int) value;
     }
 
-    public int clamp(int min, int value, int max)
+    //---- Camera Update ---------------------------------------------------------------------------------------------------------------
+
+    public void updateCamera() // l'idea è quella di passare un object che come abbiamo detto è la base di ogni entita del gioco
     {
-        if(value < min)
-        {
-            return min;
-        }
-        else if(value > max)
-        {
-            return max;
-        }
 
-        return value;
     }
-
 
 //!?!
 }
