@@ -1,3 +1,7 @@
+package GameObjects.items;
+
+import extra.Coords;
+
 import java.awt.image.BufferedImage;
 
 public abstract class Item {

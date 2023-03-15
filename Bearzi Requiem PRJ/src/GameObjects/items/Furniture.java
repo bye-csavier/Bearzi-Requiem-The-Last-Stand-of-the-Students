@@ -1,3 +1,7 @@
+package GameObjects.items;
+
+import extra.Coords;
+
 import java.awt.image.BufferedImage;
 
 public class Furniture extends Item implements Breakable {
@@ -6,7 +10,7 @@ public class Furniture extends Item implements Breakable {
 	protected Item[] inventory;
 	
 	public Furniture(String name, String desc, String iD, Coords pos, int peso, BufferedImage[] sprites, long frameRate, int durability, Item[] inventory) {
-		super(name, desc, iD, pos, peso, sprites, frameRate);
+		super();
 		this.durability = durability;
 		this.inventory = inventory;
 	}
