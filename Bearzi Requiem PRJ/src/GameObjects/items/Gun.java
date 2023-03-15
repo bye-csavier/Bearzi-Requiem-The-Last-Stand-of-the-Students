@@ -1,3 +1,8 @@
+package GameObjects.items;
+
+import GameObjects.items.Item;
+import extra.Coords;
+
 import java.awt.image.BufferedImage;
 
 public class Gun extends Item implements Transportable, Interactable {

@@ -1,8 +1,20 @@
 package extra;
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-public class KeyHandler implements KeyListener {
+public class KeyHandler implements KeyListener{
+
+    //=== MouseVars ====================================================================================================
+
+    public boolean pressedRClick;
+    public boolean clickedRClick;
+
+    PointerInfo mouseInfo;
+
+    private long elapsedHeld;
+    private long startHeld;
+    private boolean isHoldingSwitch = false;
 
     // === KeyVars ==================================================================================================== TODO
 
@@ -97,6 +109,8 @@ public class KeyHandler implements KeyListener {
     public boolean alt;
 
     // === FUNCTIONS ==================================================================================================== TODO
+
+    // --- Key Functions --------------------------------------------------------------------------------------------------
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -591,5 +605,4 @@ public class KeyHandler implements KeyListener {
 
         return false;
     }
-
 }

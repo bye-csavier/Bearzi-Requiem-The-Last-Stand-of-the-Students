@@ -4,10 +4,20 @@ import extra.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class MainPanel extends JPanel implements Runnable{
+public class MainPanel extends JPanel implements Runnable, MouseListener, MouseMotionListener {
 
     //=== PANEL VARIABLES ====================================================================================================================
+
+    //---- Mouse variables ---------------------------------------------------------------------------------------------------------------
+
+    public boolean pressedRClick;
+    public boolean clickedRClick;
+
+    PointerInfo mouseInfo;
 
     //---- Panel logic variables ---------------------------------------------------------------------------------------------------------------
 
@@ -140,7 +150,7 @@ public class MainPanel extends JPanel implements Runnable{
 
     public void update()
     {
-        //input.clearClicks();
+
     }
 
     public void paintComponent(Graphics g)
@@ -161,6 +171,65 @@ public class MainPanel extends JPanel implements Runnable{
     public PanelMode getGameState()
     {
         return this.panelState;
+    }
+
+    // --- Mouse Functions --------------------------------------------------------------------------------------------------
+
+    public int getMouseX()
+    {
+        mouseInfo = MouseInfo.getPointerInfo();
+        return mouseInfo.getLocation().x;
+    }
+
+    public int getMouseY()
+    {
+        mouseInfo = MouseInfo.getPointerInfo();
+        return mouseInfo.getLocation().y;
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        int code = e.getButton();
+
+        if(code == MouseEvent.BUTTON1)
+        {
+            pressedRClick = true;
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        int code = e.getButton();
+
+        if(code == MouseEvent.BUTTON1)
+        {
+            pressedRClick = false;
+        }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
     }
 
     //---- Responsive Size ---------------------------------------------------------------------------------------------------------------
