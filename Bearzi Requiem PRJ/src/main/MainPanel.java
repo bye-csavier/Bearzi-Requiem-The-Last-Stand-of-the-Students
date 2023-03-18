@@ -207,7 +207,7 @@ public class MainPanel extends JPanel implements Runnable, MouseListener, MouseM
 
         //• ENTITIES SPRITES
 
-        this.playerSprites = new Sprite(this, "/sprites/entities/TestDummy.png" ,0,0);
+        this.playerSprites = new Sprite(this, "/sprites/entities/TestDummy.png" ,0,0,0);
 
         //• ROOM SPRITES
 
@@ -215,14 +215,14 @@ public class MainPanel extends JPanel implements Runnable, MouseListener, MouseM
 
         this.test_GroundSprites = new Sprite[1];
 
-        test_GroundSprites[0] = new Sprite(this, "/sprites/grounds/TestTile.png" , 0,0);
+        test_GroundSprites[0] = new Sprite(this, "/sprites/grounds/TestTile.png" ,0, 0,0);
 
         //| Wall
 
         this.test_WallSprites = new Sprite[2];
 
-        test_WallSprites[0] = new Sprite(this, "/sprites/grounds/TestSideWall.png" , 0,0);
-        test_WallSprites[1] = new Sprite(this, "/sprites/grounds/TestWall.png" , 0,0);
+        test_WallSprites[0] = new Sprite(this, "/sprites/grounds/TestSideWall.png" ,0, 0,0);
+        test_WallSprites[1] = new Sprite(this, "/sprites/grounds/TestWall.png" ,0, 0,0);
 
     }
 

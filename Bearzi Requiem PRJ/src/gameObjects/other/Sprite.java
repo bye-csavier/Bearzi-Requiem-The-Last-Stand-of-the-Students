@@ -17,12 +17,13 @@ public class Sprite {
     public int x;
     public int y;
     public BufferedImage sprite;
-    private int spriteIndex;
-    private int spritesAmt;
+
+    private int xSpriteIndex;
+    private int ySpriteIndex;
+    private int spritesAmtX;
+    private int spritesAmtY;
 
     private BufferedImage img;
-
-    //BufferedImage img;
 
     //---- Sprite Animation ---------------------------------------------------------------------------------------------------------------
 
@@ -39,17 +40,19 @@ public class Sprite {
 
     //=== CONSTRUCTORS ====================================================================================================================
 
-    public Sprite(MainPanel mp, BufferedImage sprites, int spriteIndex, long animationSpeed)
+    public Sprite(MainPanel mp, BufferedImage sprites, int xSpriteIndex, int ySpriteIndex, long animationSpeed)
     {
         this.mp = mp;
         this.sprite = sprites;
-        this.spritesAmt = (this.sprite.getHeight() / mp.tileSize);
-        this.spriteIndex = spriteIndex % spritesAmt;
+        this.spritesAmtX = (this.sprite.getWidth() / mp.tileSize);
+        this.spritesAmtY = (this.sprite.getHeight() / mp.tileSize);
+        this.xSpriteIndex = xSpriteIndex % spritesAmtX;
+        this.ySpriteIndex = ySpriteIndex % spritesAmtY;
 
-        this.img = this.sprite.getSubimage(0, mp.tileSize * this.spriteIndex, mp.tileSize, mp.tileSize );
+        this.img = this.sprite.getSubimage(mp.tileSize * this.xSpriteIndex, mp.tileSize * this.ySpriteIndex, mp.tileSize, mp.tileSize );
 
         this.aniStartIndex = 0;
-        this.aniEndIndex = spritesAmt;
+        this.aniEndIndex = spritesAmtY;
 
         if(animationSpeed >= 0)
         {
@@ -61,7 +64,7 @@ public class Sprite {
 
     }
 
-    public Sprite(MainPanel mp, String sprites, int spriteIndex, long animationSpeed)
+    public Sprite(MainPanel mp, String sprites, int xSpriteIndex, int ySpriteIndex, long animationSpeed)
     {
         this.mp = mp;
 
@@ -71,13 +74,16 @@ public class Sprite {
             e.printStackTrace();
         }
 
-        this.spritesAmt = (this.sprite.getHeight() / mp.tileSize);
-        this.spriteIndex = spriteIndex % spritesAmt;
+        this.spritesAmtX = (this.sprite.getWidth() / mp.tileSize);
+        this.spritesAmtY = (this.sprite.getHeight() / mp.tileSize);
+        this.xSpriteIndex = xSpriteIndex % spritesAmtX;
+        this.ySpriteIndex = ySpriteIndex % spritesAmtY;
 
-        this.img = this.sprite.getSubimage(0, mp.tileSize * this.spriteIndex, mp.tileSize, mp.tileSize );
+        this.img = this.sprite.getSubimage(mp.tileSize * this.xSpriteIndex, mp.tileSize * this.ySpriteIndex, mp.tileSize, mp.tileSize );
+
 
         this.aniStartIndex = 0;
-        this.aniEndIndex = spritesAmt;
+        this.aniEndIndex = spritesAmtY;
 
         if(animationSpeed >= 0)
         {
@@ -100,7 +106,7 @@ public class Sprite {
 
     public BufferedImage getRootSprite()
     {
-        return this.img;
+        return this.sprite;
     }
 
     public void setSprite(BufferedImage sprite)
@@ -108,11 +114,26 @@ public class Sprite {
         this.sprite = sprite;
     }
 
-    public void setSpriteIndex(int index)
+    public void setXSpriteIndex(int index)
     {
-        this.spriteIndex = index % spritesAmt;
+        this.xSpriteIndex = index % spritesAmtX;
 
-        img = sprite.getSubimage(0, mp.tileSize * this.spriteIndex, mp.tileSize, mp.tileSize );
+        this.img = this.sprite.getSubimage(mp.tileSize * this.xSpriteIndex, mp.tileSize * this.ySpriteIndex, mp.tileSize, mp.tileSize );
+    }
+
+    public void setYSpriteIndex(int index)
+    {
+        this.ySpriteIndex = index % spritesAmtY;
+
+        this.img = this.sprite.getSubimage(mp.tileSize * this.xSpriteIndex, mp.tileSize * this.ySpriteIndex, mp.tileSize, mp.tileSize );
+    }
+
+    public void setSpriteIndex(int xIndex, int yIndex)
+    {
+        this.xSpriteIndex = xIndex % spritesAmtX;
+        this.ySpriteIndex = yIndex % spritesAmtY;
+
+        this.img = this.sprite.getSubimage(mp.tileSize * this.xSpriteIndex, mp.tileSize * this.ySpriteIndex, mp.tileSize, mp.tileSize );
     }
 
     public void setAniStartIndex(int aniStartIndex) {
@@ -127,13 +148,13 @@ public class Sprite {
     }
 
     public void setAniEndIndex(int aniEndIndex) {
-        if(aniEndIndex > this.spritesAmt)
+        if(aniEndIndex > this.spritesAmtY)
         {
             this.aniEndIndex = aniEndIndex;
         }
         else
         {
-           this.aniEndIndex = this.spritesAmt;
+           this.aniEndIndex = this.spritesAmtY;
         }
     }
 
@@ -182,17 +203,17 @@ public class Sprite {
             {
                 if(this.lastAnimationTime == 0)
                 {
-                    this.spriteIndex = this.aniStartIndex;
+                    this.ySpriteIndex = this.aniStartIndex;
                 }
 
-                if(this.spriteIndex+1 > this.aniEndIndex)
+                if(this.ySpriteIndex+1 > this.aniEndIndex)
                 {
-                    this.spriteIndex = this.aniStartIndex;
+                    this.ySpriteIndex = this.aniStartIndex;
                 }
 
                 if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
                 {
-                    this.setSpriteIndex( (this.spriteIndex+1) );
+                    this.setYSpriteIndex( (this.ySpriteIndex+1) );
                     lastAnimationTime = System.nanoTime();
                 }
             }
@@ -200,17 +221,17 @@ public class Sprite {
             {
                 if(this.lastAnimationTime == 0)
                 {
-                    this.spriteIndex = this.aniStartIndex;
+                    this.ySpriteIndex = this.aniStartIndex;
                 }
 
-                if(this.spriteIndex+1 > this.aniEndIndex)
+                if(this.ySpriteIndex+1 > this.aniEndIndex)
                 {
                     this.pause();
                 }
 
                 if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
                 {
-                    this.setSpriteIndex( (this.spriteIndex+1) );
+                    this.setYSpriteIndex( (this.ySpriteIndex+1) );
                     lastAnimationTime = System.nanoTime();
                 }
             }
