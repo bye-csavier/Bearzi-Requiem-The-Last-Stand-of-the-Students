@@ -1,23 +1,25 @@
+package gameObjects.items;
+
+import extra.Coords;
+import gameObjects.GameObj;
+import gameObjects.other.Sprite;
+import main.MainPanel;
+
 import java.awt.image.BufferedImage;
 
-public abstract class Item {
-	protected String name;
-	protected String desc;
+public abstract class Item extends GameObj {
+
 	protected String ID;
-	protected Coords pos;
 	protected int peso;
-	protected BufferedImage[] sprites;
-	protected long frameRate;
 	
-	public Item(String name, String desc, String iD, Coords pos, int peso, BufferedImage[] sprites, long frameRate) {
-		super();
+	public Item(MainPanel mp, String name, String desc, String iD, Coords pos, int peso, Sprite sprites) {
+		super(mp,pos);
 		this.name = name;
 		this.desc = desc;
 		ID = iD;
 		this.pos = pos;
 		this.peso = peso;
 		this.sprites = sprites;
-		this.frameRate = frameRate;
 	}
 	
 	public String getName() {
@@ -35,11 +37,9 @@ public abstract class Item {
 	public int getPeso() {
 		return peso;
 	}
-	public BufferedImage[] getSprites() {
+	public Sprite getSprites() {
 		return sprites;
 	}
-	public long getFrameRate() {
-		return frameRate;
-	}
+
 	
 }

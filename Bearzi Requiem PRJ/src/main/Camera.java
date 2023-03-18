@@ -6,7 +6,8 @@ public class Camera {
 
     //=== VARIABLES ====================================================================================================================
 
-    public Coords camPos = new Coords();
+    public int x;
+    public int y;
     public double camZoom = 0;
     public double camRotation = 0;
 
@@ -14,8 +15,8 @@ public class Camera {
 
     public Camera(int givnCamX, int givnCamY, double givnCamZoom, double givnCamRotation)
     {
-        this.camPos.x = givnCamX;
-        this.camPos.y = givnCamY;
+        this.x = givnCamX;
+        this.y = givnCamY;
         this.camZoom = givnCamZoom;
         this.camRotation = givnCamRotation;
     }
@@ -24,12 +25,12 @@ public class Camera {
 
     public int getCamX()
     {
-        return this.camPos.x;
+        return this.x;
     }
 
     public int getCamY()
     {
-        return this.camPos.y;
+        return this.y;
     }
 
     public double getZoom()
@@ -62,24 +63,30 @@ public class Camera {
         this.camZoom += addZoom;
     }
 
+    public void setCamPos(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }
+
     public void setCamX(int x)
     {
-        this.camPos.x = x;
+        this.x = x;
     }
 
     public void setCamY(int y)
     {
-        this.camPos.y = y;
+        this.y = y;
     }
 
     public void shiftCamX(int shift)
     {
-        this.camPos.x += shift;
+        this.x += shift;
     }
 
     public void shiftCamY(int shift)
     {
-        this.camPos.y += shift;
+        this.y += shift;
     }
 
 }

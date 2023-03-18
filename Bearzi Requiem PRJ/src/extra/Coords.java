@@ -4,43 +4,60 @@ import java.awt.Point;
 
 public class Coords {
 
-    public int x;
-    public int y;
-    public int absX;
-    public int absY;
+    public int screenX;
+    public int screenY;
+    public int worldX;
+    public int worldY;
 
-    public Coords(int x, int y, int absX, int absY)
+    public Coords(int screenX, int screenY, int worldX, int worldY)
     {
-        this.x = x;
-        this.y = y;
-        this.absX = absX;
-        this.absY = absY;
+        this.screenX = screenX;
+        this.screenY = screenY;
+        this.worldX = worldX;
+        this.worldY = worldY;
     }
 
-    public Coords(int x, int y)
+    public Coords(int screenX, int screenY)
     {
-        this.x = x;
-        this.y = y;
-        this.absX = x;
-        this.absY = y;
+        this.screenX = screenX;
+        this.screenY = screenY;
+        this.worldX = screenX;
+        this.worldY = screenY;
     }
 
     public Coords()
     {
-        this.x = 0;
-        this.y = 0;
-        this.absX = 0;
-        this.absY = 0;
+        this.screenX = 0;
+        this.screenY = 0;
+        this.worldX = 0;
+        this.worldY = 0;
     }
 
-    public Point toPoint()
+    public void setScreenCoord(int x, int y)
     {
-        return new Point(this.x,this.y);
+        this.screenX = x;
+        this.screenY = y;
     }
 
-    public Point toAbsPoint()
+    public void setWorldCoord(int x, int y)
     {
-        return new Point(this.absX,this.absY);
+        this.worldX = x;
+        this.worldY = y;
+    }
+
+    public Point toScreenPoint()
+    {
+        return new Point(this.screenX,this.screenY);
+    }
+
+    public Point toWorldPoint()
+    {
+        return new Point(this.worldX,this.worldY);
+    }
+
+    public static Point toPoint(int x, int y)
+    {
+        return new Point(x,y);
     }
 
 }

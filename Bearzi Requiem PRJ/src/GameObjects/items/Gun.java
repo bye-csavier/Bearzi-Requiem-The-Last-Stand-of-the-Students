@@ -1,3 +1,10 @@
+package gameObjects.items;
+
+import extra.Coords;
+import gameObjects.other.Sprite;
+import main.MainPanel;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Gun extends Item implements Transportable, Interactable {
@@ -9,8 +16,8 @@ public class Gun extends Item implements Transportable, Interactable {
 	protected WeaponType type;
 	
 	
-	public Gun(String name, String desc, String iD, Coords pos, int peso, BufferedImage[] sprites, long frameRate, int attack, int magazine, int ammo, long fireRate, long coolDown, WeaponType type) {
-		super(name, desc, iD, pos, peso, sprites, frameRate);
+	public Gun(MainPanel mp, String name, String desc, String iD, Coords pos, int peso, Sprite sprites, int attack, int magazine, int ammo, long fireRate, long coolDown, WeaponType type) {
+		super(mp, name, desc, iD, pos, peso, sprites);
 		this.attack = attack;
 		this.magazine = magazine;
 		this.ammo = ammo;
@@ -33,4 +40,23 @@ public class Gun extends Item implements Transportable, Interactable {
 		
 	}
 
+	@Override
+	public void draw(Graphics2D g2) {
+
+	}
+
+	@Override
+	public void update() {
+
+	}
+
+	@Override
+	public void isInsideScreen() {
+
+	}
+
+	@Override
+	public void syncCamera(Graphics2D g2) {
+
+	}
 }

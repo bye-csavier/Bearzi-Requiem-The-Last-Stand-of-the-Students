@@ -1,9 +1,9 @@
 package extra;
+import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-public class KeyHandler implements KeyListener {
-
+public class KeyHandler implements KeyListener{
     // === KeyVars ==================================================================================================== TODO
 
     // --- Numbers --------------------------------------------------------------------------------------------------
@@ -97,6 +97,8 @@ public class KeyHandler implements KeyListener {
     public boolean alt;
 
     // === FUNCTIONS ==================================================================================================== TODO
+
+    // --- Key Functions --------------------------------------------------------------------------------------------------
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -447,99 +449,99 @@ public class KeyHandler implements KeyListener {
             W = false;
         }
         if(keyCode == KeyEvent.VK_E) {
-            e = true;
+            e = false;
             E = false;
         }
         if(keyCode == KeyEvent.VK_R) {
-            r = true;
+            r = false;
             R = false;
         }
         if(keyCode == KeyEvent.VK_T) {
-            t = true;
+            t = false;
             T = false;
         }
         if(keyCode == KeyEvent.VK_Y) {
-            y = true;
+            y = false;
             Y = false;
         }
         if(keyCode == KeyEvent.VK_U) {
-            u = true;
+            u = false;
             U = false;
         }
         if(keyCode == KeyEvent.VK_I) {
-            i = true;
+            i = false;
             I = false;
         }
         if(keyCode == KeyEvent.VK_O) {
-            o = true;
+            o = false;
             O = false;
         }
         if(keyCode == KeyEvent.VK_P) {
-            p = true;
+            p = false;
             P = false;
         }
         if(keyCode == KeyEvent.VK_A) {
-            a = true;
+            a = false;
             A = false;
         }
         if(keyCode == KeyEvent.VK_S) {
-            s = true;
+            s = false;
             S = false;
         }
         if(keyCode == KeyEvent.VK_D) {
-            d = true;
+            d = false;
             D = false;
         }
         if(keyCode == KeyEvent.VK_F) {
-            f = true;
+            f = false;
             F = false;
         }
         if(keyCode == KeyEvent.VK_G) {
-            g = true;
+            g = false;
             G = false;
         }
         if(keyCode == KeyEvent.VK_H) {
-            h = true;
+            h = false;
             H = false;
         }
         if(keyCode == KeyEvent.VK_J) {
-            j = true;
+            j = false;
             J = false;
         }
         if(keyCode == KeyEvent.VK_K) {
-            k = true;
+            k = false;
             K = false;
         }
         if(keyCode == KeyEvent.VK_L) {
-            l = true;
+            l = false;
             L = false;
         }
         if(keyCode == KeyEvent.VK_Z) {
-            z = true;
+            z = false;
             Z = false;
         }
         if(keyCode == KeyEvent.VK_X) {
-            x = true;
+            x = false;
             X = false;
         }
         if(keyCode == KeyEvent.VK_C) {
-            c = true;
+            c = false;
             C = false;
         }
         if(keyCode == KeyEvent.VK_V) {
-            v = true;
+            v = false;
             V = false;
         }
         if(keyCode == KeyEvent.VK_B) {
-            b = true;
+            b = false;
             B = false;
         }
         if(keyCode == KeyEvent.VK_N) {
-            n = true;
+            n = false;
             N = false;
         }
         if(keyCode == KeyEvent.VK_M) {
-            m = true;
+            m = false;
             M = false;
         }
 
@@ -591,5 +593,4 @@ public class KeyHandler implements KeyListener {
 
         return false;
     }
-
 }

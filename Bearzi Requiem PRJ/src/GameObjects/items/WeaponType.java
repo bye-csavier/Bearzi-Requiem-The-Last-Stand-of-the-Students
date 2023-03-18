@@ -1,3 +1,5 @@
+package gameObjects.items;
+
 public enum WeaponType {
 	FIREARM("Firearm"),
 	MAGIC("Magic weapon"),

@@ -1,7 +1,7 @@
 package main;
 
 import javax.swing.*;
-import java.awt.Toolkit;
+import java.awt.*;
 
 /*
 

@@ -11,14 +11,13 @@ abstract public class ElementUI {
 
     //---- Element Vars ---------------------------------------------------------------------------------------------------------------
 
-    MainPanel mainPanel;
+    MainPanel mp; // Main Panel
     Rectangle area;
     boolean visible;
 
     //---- Size & Position Vars ---------------------------------------------------------------------------------------------------------------
 
     public Coords pos;
-    public Coords absPos;
 
     //---- Animation Vars ---------------------------------------------------------------------------------------------------------------
 
