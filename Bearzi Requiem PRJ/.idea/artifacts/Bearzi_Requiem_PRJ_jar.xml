@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Bearzi Requiem PRJ:jar">
+    <output-path>$PROJECT_DIR$/../../../../../../DOWNLOAD/temp</output-path>
+    <root id="archive" name="Bearzi Requiem PRJ.jar">
+      <element id="module-output" name="Bearzi Requiem PRJ" />
+    </root>
+  </artifact>
+</component>
