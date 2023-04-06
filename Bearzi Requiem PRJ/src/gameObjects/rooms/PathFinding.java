@@ -1,5 +1,8 @@
 package gameObjects.rooms;
 
+import extra.Utils;
+import jdk.jshell.execution.Util;
+
 import java.util.*;
 
 public class PathFinding {
@@ -99,31 +102,71 @@ public class PathFinding {
         return Math.abs(x - fineX) + Math.abs(y - fineY);
     }
 
+    //=== FUNZIONAMENTO ESTERNO =========
+
     public static List<Nodo> start(int[][] map, int startX, int startY, int endX, int endY)
     {
+        if(startX == endX && startY == endY)
+        {
+            return null;
+        }
+
         PathFinding aStar = new PathFinding();
 
         aStar.mappa = map;
 
+        System.out.print(Utils.nL + Utils.nL + "-------------------------------------------------" +
+                         Utils.nL + "Inizio : " + startX + " | " + startY +
+                         Utils.nL + "Fine : " + endX + " | " + endY + Utils.nL + Utils.nL);
+
+        for(int y=0; y<map[0].length; y++)
+        {
+            for(int x=0; x<map.length; x++)
+            {
+                if(x == startX && y == startY)
+                {
+                    System.out.print("S" + " ");
+                }
+                else if(x == endX && y == endY)
+                {
+                    System.out.print("E" + " ");
+                }
+                else {
+                    System.out.print(map[x][y] + " ");
+                }
+            }
+            System.out.println();
+        }
+
         aStar.inizioX = startY;  //x e y sono scambiate
         aStar.inizioY = startX;
-        aStar.fineX = startY;
-        aStar.fineY = startX;
+        aStar.fineX = endY;
+        aStar.fineY = endX;
 
         return aStar.trovaPercorso();
     }
 
     public static int[][] convertNodi(List<Nodo> nodi)
     {
-        int[][] nodiConv = new int[2][nodi.size()];
-
-        for(int i=0; i<nodi.size(); i++)
+        if(nodi != null)
         {
-            nodiConv[0][i] = nodi.get(i).x;
-            nodiConv[1][i] = nodi.get(i).y;
+            int[][] nodiConv = new int[2][nodi.size()];
+
+            System.out.print(Utils.nL + Utils.nL);
+
+            for(int i=0; i<nodi.size(); i++)
+            {
+                nodiConv[0][i] = nodi.get(i).y;
+                nodiConv[1][i] = nodi.get(i).x;
+
+                System.out.println(nodiConv[0][i] + " | " + nodiConv[1][i]);
+            }
+
+            return nodiConv;
         }
 
-        return nodiConv;
+        System.out.print(Utils.nL + "!NULL!");
+        return null;
     }
 
 }

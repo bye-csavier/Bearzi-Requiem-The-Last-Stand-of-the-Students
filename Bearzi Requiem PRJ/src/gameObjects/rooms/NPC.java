@@ -57,6 +57,10 @@ public class NPC extends GameObj {
     private int goToUpdateCounter;
     private double goToX;
     private double goToY;
+    private Coords goToEndPoint;
+
+    private int[][] nodeList;
+    private int nextNode = 0;
 
 //    private Coords playerPos;
 //    private int[][] collisionMap;
@@ -101,11 +105,40 @@ public class NPC extends GameObj {
 
     public void followPlayer(Coords playerCoords,int[][] collisionMap)
     {
-        if(goToLastTime > 0)
+        if(this.nodeList == null || this.nextNode <= 0)
         {
-            int[][] coordsList = PathFinding.convertNodi(PathFinding.start(collisionMap, Room.xRelativeToTilemap(Settings.basicTileSize,this.sprite.pos), Room.yRelativeToTilemap(Settings.basicTileSize,this.sprite.pos), Room.xRelativeToTilemap(Settings.basicTileSize,playerCoords), Room.yRelativeToTilemap(Settings.basicTileSize,playerCoords)));
+            this.nodeList = PathFinding.convertNodi(PathFinding.start(collisionMap, Room.xRelativeToTilemap(this.sprite.pos), Room.yRelativeToTilemap(this.sprite.pos), Room.xRelativeToTilemap(playerCoords), Room.yRelativeToTilemap(playerCoords)));
+            this.nextNode = 0;
+//            if(this.nodeList != null)
+//            {
+//                System.out.print(Utils.nL + Utils.nL + "------------------------------------------------- | " + nodeList[0].length + Utils.nL);
+//
+//                for(int y=0; y<collisionMap[0].length; y++)
+//                {
+//                    for(int x=0; x<collisionMap.length; x++)
+//                    {
+//                        System.out.print(collisionMap[x][y] + " ");
+//                    }
+//                    System.out.println();
+//                }
+//
+//            }
 
         }
+
+        if(this.nodeList != null && this.nextNode < nodeList[0].length)
+        {
+            System.out.print(Utils.nL + Utils.nL + "map X= " + this.nodeList[0][this.nextNode] + " | map Y= " + this.nodeList[1][this.nextNode] +
+                             Utils.nL + "X= " + Room.xRelativeToRealmap(this.nodeList[0][nextNode]) + " | Y= " + Room.yRelativeToRealmap(this.nodeList[1][nextNode]));
+
+            goToSpeed(new Coords(Room.xRelativeToRealmap(this.nodeList[0][nextNode]),Room.yRelativeToRealmap(this.nodeList[1][nextNode])));
+            this.nextNode++;
+        }
+        else if(nextNode != 0)
+        {
+            this.nextNode = 0;
+        }
+
     }
 
     public void setup(NpcType type)
@@ -164,6 +197,7 @@ public class NPC extends GameObj {
 //                Utils.nL + "Inside: " + time +
 //                Utils.nL + "---------------------------------------------" + Utils.nL);
 
+        this.goToEndPoint = endPoint;
         this.goToLastTime = System.nanoTime();
 
         this.goToUpdateAmt = (int) (time / Settings.goToUpdateInterval);
@@ -183,7 +217,10 @@ public class NPC extends GameObj {
         if(this.sprite.pos.worldX > endPoint.worldX)
         {
             this.goToMovSpeedX = - this.goToMovSpeedX;
+            this.sprite.flipX = true;
         }
+        else { this.sprite.flipX = false; }
+
         if(this.sprite.pos.worldY > endPoint.worldY)
         {
             this.goToMovSpeedY = - this.goToMovSpeedY;
@@ -204,6 +241,7 @@ public class NPC extends GameObj {
         {
             if(this.goToUpdateCounter >= this.goToUpdateAmt)
             {
+                this.sprite.setWorldPos(this.goToEndPoint.worldX,this.goToEndPoint.worldY);
                 this.goToLastTime = 0;
                 this.idleAni();
                 return;

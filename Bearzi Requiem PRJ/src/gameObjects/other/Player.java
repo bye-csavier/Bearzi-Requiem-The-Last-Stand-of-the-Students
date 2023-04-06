@@ -3,6 +3,7 @@ package gameObjects.other;
 import extra.Coords;
 import extra.Utils;
 import gameObjects.GameObj;
+import gameObjects.rooms.Room;
 import main.MainPanel;
 
 import java.awt.*;
@@ -18,6 +19,8 @@ public class Player extends GameObj {
         this.sprite.setPos(pos.screenX,pos.screenY);
     }
 
+
+
     @Override
     public void update() {
 
@@ -26,25 +29,37 @@ public class Player extends GameObj {
 
             if(mp.input.d)
             {
-//                System.out.print(Utils.nL + "------------------------------------------------------------------------------------------" + Utils.nL + "RIGHT d");
+                if(mp.getCollisionMap()[Room.xRelativeToTilemap(sprite.pos.worldX + (this.sprite.size/2) + movSpeed)][Room.yRelativeToTilemap(sprite.pos.worldY + (this.sprite.size/2) )] == 1)
+                {
+                    return;
+                }
                 sprite.pos.worldX += movSpeed;
                 mp.cam.setCamX((-this.sprite.pos.worldX)+(this.mp.centerX));
             }
             if(mp.input.a)
             {
-//                System.out.print(Utils.nL + "------------------------------------------------------------------------------------------" + Utils.nL + "LEFT a");
+                if(mp.getCollisionMap()[Room.xRelativeToTilemap(sprite.pos.worldX + (this.sprite.size/2) - movSpeed)][Room.yRelativeToTilemap(sprite.pos.worldY + (this.sprite.size/2) )] == 1)
+                {
+                    return;
+                }
                 sprite.pos.worldX -= movSpeed;
                 mp.cam.setCamX((-this.sprite.pos.worldX)+(this.mp.centerX));
             }
             if(mp.input.s)
             {
-//                System.out.print(Utils.nL + "------------------------------------------------------------------------------------------" + Utils.nL + "BOTTOM s");
+                if(mp.getCollisionMap()[Room.xRelativeToTilemap(sprite.pos.worldX + (this.sprite.size/2) )][Room.yRelativeToTilemap(sprite.pos.worldY + (this.sprite.size/2) + movSpeed)] == 1)
+                {
+                    return;
+                }
                 sprite.pos.worldY += movSpeed;
                 mp.cam.setCamY((-this.sprite.pos.worldY)+(this.mp.centerY));
             }
             if(mp.input.w)
             {
-//                System.out.print(Utils.nL + "------------------------------------------------------------------------------------------" + Utils.nL + "TOP w");
+                if(mp.getCollisionMap()[Room.xRelativeToTilemap(sprite.pos.worldX + (this.sprite.size/2) )][Room.yRelativeToTilemap(sprite.pos.worldY + (this.sprite.size/2) - movSpeed)] == 1)
+                {
+                    return;
+                }
                 sprite.pos.worldY -= movSpeed;
                 mp.cam.setCamY((-this.sprite.pos.worldY)+(this.mp.centerY));
             }

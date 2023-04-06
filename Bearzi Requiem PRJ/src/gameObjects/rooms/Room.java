@@ -61,7 +61,7 @@ public class Room {
 
         //! -----------------
         this.npcs = new NPC[2];
-        this.npcs[0] = new Spider(mp, 0,0);
+        this.npcs[0] = new Spider(mp, 200,200);
         //this.npcs[0].sprite.flipX = true;
 
         //! -----------------
@@ -85,7 +85,11 @@ public class Room {
         {
             if(this.npcs[i] != null)
             {
-                    this.npcs[i].update();
+                if(this.npcs[i].goToLastTime <= 0) {
+                    this.npcs[i].followPlayer(mp.game.player.sprite.pos,this.collisionMap);
+                }
+
+                this.npcs[i].update();
             }
 
         }
@@ -99,12 +103,12 @@ public class Room {
         {
             for(int x = 0; x < roomWidth; x++)
             {
-                if(groundMap[x][y].pos.isInside(0-(edgeCheck*edgeCkMult),mp.screenWidth+(edgeCheck*edgeCkMult),0-(edgeCheck*edgeCkMult),mp.screenHeight+(edgeCheck*edgeCkMult)) && collisionMap[x][y] != 1)
+                if(collisionMap[x][y] != 1)
                 {
                     groundMap[x][y].draw(g2);
                 }
 
-                if( layoutMap[x][y].pos.isInside(0-(edgeCheck*edgeCkMult),mp.screenWidth+(edgeCheck*edgeCkMult),0-(edgeCheck*edgeCkMult),mp.screenHeight+(edgeCheck*edgeCkMult)) && collisionMap[x][y] != 0 )
+                if(collisionMap[x][y] != 0 )
                 {
                     layoutMap[x][y].draw(g2);
                 }
@@ -142,7 +146,6 @@ public class Room {
             if(this.npcs[i] != null)
             {
                 this.npcs[i].syncCamera();
-                this.npcs[i].goToSpeed(mp.game.player.sprite.pos, this.npcs[i].movSpeed);
             }
 
         }
@@ -475,30 +478,41 @@ public class Room {
 
     //---- Extra ---------------------------------------------------------------------------------------------------------------
 
-    public static int xRelativeToTilemap(int tileSize, int x)
+    public static int xRelativeToTilemap(int x)
     {
-        return (x/tileSize);
+        return (x/Settings.basicTileSize);
     }
-    public static int yRelativeToTilemap(int tileSize, int y)
+    public static int yRelativeToTilemap(int y)
     {
-        return (y/tileSize);
+        return (y/Settings.basicTileSize);
     }
-    public static int[] indexRelativeToTilemap(int tileSize, int x, int y)
+    public static int[] indexRelativeToTilemap(int x, int y)
     {
-        return new int[]{(x / tileSize), (y / tileSize)};
+        return new int[]{(x / Settings.basicTileSize), (y / Settings.basicTileSize)};
     }
 
-    public static int xRelativeToTilemap(int tileSize, Coords pos)
+    public static int xRelativeToTilemap(Coords pos)
     {
-        return (pos.worldX/tileSize);
+        return (pos.worldX/Settings.basicTileSize);
     }
-    public static int yRelativeToTilemap(int tileSize, Coords pos)
+    public static int yRelativeToTilemap(Coords pos)
     {
-        return (pos.worldY/tileSize);
+        return (pos.worldY/Settings.basicTileSize);
     }
-    public static int[] indexRelativeToTilemap(int tileSize, Coords pos)
+    public static int[] indexRelativeToTilemap(Coords pos)
     {
-        return new int[]{(pos.worldX/tileSize), (pos.worldY/tileSize)};
+        return new int[]{(pos.worldX/Settings.basicTileSize), (pos.worldY/Settings.basicTileSize)};
     }
+
+
+    public static int xRelativeToRealmap(int x)
+    {
+        return (x*Settings.basicTileSize);
+    }
+    public static int yRelativeToRealmap(int y)
+    {
+        return (y*Settings.basicTileSize);
+    }
+
 
 }

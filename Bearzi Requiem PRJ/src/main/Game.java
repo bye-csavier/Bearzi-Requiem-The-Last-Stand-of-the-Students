@@ -12,13 +12,14 @@ public class Game {
 
     MainPanel mp;
     public Player player;
-    Stage stage;
+    public Stage stage;
 
     public Game(MainPanel mp)
     {
         this.mp = mp;
 
         this.player = new Player(mp, new Coords( (mp.centerX - (Settings.playerSize/2)) ,(mp.centerY - (Settings.playerSize/2)) ), mp.getVMIN(1) );
+        this.player.sprite.pos.setWorldCoord(200,200);
 
         stage = new Stage(mp);
 

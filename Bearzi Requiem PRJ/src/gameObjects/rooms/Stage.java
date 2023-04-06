@@ -20,7 +20,7 @@ public class Stage {
 
     public String spriteSet;
 
-    int currentRoom = 0;
+    public int currentRoom = 0;
 
     //=== CONSTRUCTORS ====================================================================================================================
 

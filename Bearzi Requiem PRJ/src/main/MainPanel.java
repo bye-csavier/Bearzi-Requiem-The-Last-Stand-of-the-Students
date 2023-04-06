@@ -25,19 +25,22 @@ import java.awt.event.MouseMotionListener;
 
 >    [ INFO ]
 
-!||  CLASSI  ||
+!||  CLASSI  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 | Settings |
 .   E una classe importante che contiene variabili di impostazione e di base per il gioco oltre che costanti finali come stringhe
 
-!||  FUNZIONI  ||
+!||  FUNZIONI  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-!||  VARIABILI  ||
+| getSpritesByName |
+.   !IMPORTANTE! è la funzione generica e più utilizzata per reprire le sprite del codice in maniera semplice e "sicura"; il manetenimento è macchinoso e lento ma lo rende molto personalizzabile e performante
+
+!||  VARIABILI  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 | mp |
 .   !IMPORTANTE! variabile che contiene l'istanza di questo pannello e ci permette di accedere a funzioni e variabili comodamente
 
-!||  STANDARDS  ||
+!||  STANDARDS  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 | Matrici |
 .   !IMPORTANTE! Utilizziamo questa logica per le matrici matrix[X][Y] = matrix[righe][colonne]
@@ -46,16 +49,16 @@ import java.awt.event.MouseMotionListener;
 .   !IMPORTANTE! Sulla asse Y si mettono le evoluzioni di una sprite e su quella X le sue varianti, per precisazioni chiedere a lux o xavi (oppure guardare come sono strutturate le sprite)
 .   !IMPORTANTE! Per gli NPC e simili = PRIMO SET DI SPRITE IN X: Idle(fermo) | SECONDO SET DI SPRITE IN X: Moving |  TERZO SET DI SPRITE IN X: Attack
 
-!||  ALTRO  ||
+!||  ALTRO  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 | Lessico Dimensioni |
 .   Width = X / Larghezza / Dimensione orizzontale || Height = Y / Altezza / Dimensione verticale
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+======================================================================================================================================================================================
 
-!||  TODO  || ❌ ✔️ ⚙️ ❗ ⮞
+•||  TODO  || -_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-.------------------------------------------
+.-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 .⠀
 . ❌ = da fare
 .  ❗ = priorita
@@ -63,24 +66,45 @@ import java.awt.event.MouseMotionListener;
 . ⚙️ = in lavoro
 .  ⮞ = "si collega a"
 .⠀
-.------------------------------------------
+.-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-✔️ | Aggiornata classi game objects all'utilizzo della nuova classe Sprite [ Xavier ]
-❌️️️ | Classe Bullet : collegato allo sviluppo delle hitbox e delle animazioni [ Andre - Yehor ] ❗
-❌ | TextBox [ Lux - Xavier ]
-✔️ | A* path finding per gli NPC [ Yehor ]
+--- ANDRE ----------------------------------------------------------------------
+❌️️️ | Attacco corpo a corpo dei mostri [ Andre - Yehor ] ❗
+⚙️️️ | Classe Bullet : collegato allo sviluppo delle hitbox e delle animazioni [ Andre - Yehor ] ❗
+⚙️ | Gestire gli oggetti e creare il glossario di oggetti nel main panel (vago) [ Andre ]
+
+--- YEHOR ----------------------------------------------------------------------
+❌️️️ | Attacco corpo a corpo dei mostri [ Andre - Yehor ] ❗
+⚙️ | Creare un NPC di base, e farlo muovere nella mappa grazie all'algoritmo di A* [ Xav - Yehor ] ❗
+
+--- LUX ----------------------------------------------------------------------
+❌️️️ | Creazione arma che utilizza bullet e intergisce con la posizone del mouse (magari se riusciamo anche arma corpo a corpo ⮞ attacco mostri) [ Xav - Lux ] ❗
+❌️️️ | Mostri & Personaggio che prendono danno e muoiono [ Xav - Lux ] ❗
+❌️️️ | Aggiunte di porte funzionanti alle stanze [ Xav - Lux ]
+❌ | TextBox [ Lux - Xav ]
+❌ | Gestione e riproduzione dei suoni [ Lux ]
+❌ | Bloccare i movimenti del player in caso di collisione [ Xav - Lux ] ❗
+⚙️ | Stage + Room : salvataggio e caricamento delle mappe [ Lux - Xav ]
+✔️ | Stage + Room : creare il caricamento delle sprite, la generazione delle mappe e la stampa delle mappe ( ⮞ creazione del "tile system" ) [ Lux - Xav ]
+✔️ | Capire come gestire la hitbox delle sprite della Room che per ora non sono segnate come oggetti (influisce su syncCamera e si deve allineare con gli ogetti di andre) [ Xav - Lux ]
+
+--- XAV ----------------------------------------------------------------------
+❌️️️ | Creazione arma che utilizza bullet e intergisce con la posizone del mouse (magari se riusciamo anche arma corpo a corpo ⮞ attacco mostri) [ Xav - Lux ] ❗
+❌️️️ | Mostri & Personaggio che prendono danno e muoiono [ Xav - Lux ] ❗
+❌️️️ | Aggiunte di porte funzionanti alle stanze [ Xav - Lux ]
+❌ | TextBox [ Lux - Xav ]
+❌ | Bloccare i movimenti del player in caso di collisione [ Xav - Lux ] ❗
+⚙️ | Stage + Room : salvataggio e caricamento delle mappe [ Lux - Xav ]
+⚙️ | Creare un NPC di base, e farlo muovere nella mappa grazie all'algoritmo di A* [ Xav - Yehor ] ❗
+✔️ | Aggiornata classi game objects all'utilizzo della nuova classe Sprite [ Xav ]
 ✔️ | Scambio da riferimento generale a tilesize a size personalizzato con l'aggiunta di zoom dal mp [ Xav ]
 ✔️ | Mettere la conversione interna in millisecondi nei costruttori di sprite [ Xav ]
-⚙️ | Creazione e cura della classe settings [ Andre - Xav - Lux ] ❗❗❗
-✔️ | Stage + Room : creare il caricamento delle sprite, la generazione delle mappe e la stampa delle mappe ( ⮞ creazione del "tile system" ) [ Lux - Xav ] ❗
-⚙️ | Stage + Room : salvataggio e caricamento delle mappe [ Lux - Xav ]
-⚙️ | Gestire gli oggetti e creare il glossario di oggetti nel main panel [ Andre ]
+✔️ | Stage + Room : creare il caricamento delle sprite, la generazione delle mappe e la stampa delle mappe ( ⮞ creazione del "tile system" ) [ Lux - Xav ]
 ✔️ | Sync della camera ( ⮞ prima stampa della stanza e test generale ) [ Xav ]
-✔️ | Controllare perchè stage ha numeri fuori dal random ( ⮞ Stage) [ Xav ] ❗
-✔️ | Movimento NPC [ Xav ] ❗
-⚙️ | Creare un NPC di base, e farlo muovere nella mappa grazie all'algoritmo di A* (chiedete a xav o lux per variabili e metodi inerenti alla grafica) [ Xav ]
-✔️ | Capire come gestire la hitbox delle sprite della Room che per ora non sono segnate come oggetti (influisce su syncCamera e si deve allineare con gli ogetti di andre) [ Xav - Lux ] ❗
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+✔️ | Movimento NPC [ Xav ]
+✔️ | Capire come gestire la hitbox delle sprite della Room che per ora non sono segnate come oggetti (influisce su syncCamera e si deve allineare con gli ogetti di andre) [ Xav - Lux ]
+
+======================================================================================================================================================================================
 
 > Documentazione interna al codice per chiarire dubbi su variabili,classi e funzioni
 */
@@ -422,6 +446,11 @@ public class MainPanel extends JPanel implements Runnable, MouseListener, MouseM
     }
 
     //---- Extra ---------------------------------------------------------------------------------------------------------------
+
+    public int[][] getCollisionMap()
+    {
+        return this.game.stage.rooms[this.game.stage.currentRoom].collisionMap;
+    }
 
     public Sprite getSpritesByName(String name) {
        /*

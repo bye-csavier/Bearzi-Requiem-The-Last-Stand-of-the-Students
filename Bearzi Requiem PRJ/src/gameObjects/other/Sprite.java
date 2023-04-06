@@ -20,6 +20,7 @@ public class Sprite implements Cloneable{
     public Coords pos;
     public int size;
     private int tileSize;
+    private int edgeChecker;
 
     private int centerX;
     private int centerY;
@@ -56,6 +57,7 @@ public class Sprite implements Cloneable{
         this.mp = mp;
         this.sprite = sprites;
         this.size = size;
+        this.edgeChecker = this.size*2;
         this.tileSize = tilesize;
         this.spritesAmtX = (this.sprite.getWidth() / this.tileSize);
         this.spritesAmtY = (this.sprite.getHeight() / this.tileSize);
@@ -92,6 +94,7 @@ public class Sprite implements Cloneable{
         }
 
         this.size = size;
+        this.edgeChecker = this.size*2;
         this.tileSize = tilesize;
         this.spritesAmtX = (this.sprite.getWidth() / this.tileSize);
         this.spritesAmtY = (this.sprite.getHeight() / this.tileSize);
@@ -129,6 +132,7 @@ public class Sprite implements Cloneable{
         }
 
         this.size = size;
+        this.edgeChecker = this.size*2;
         this.tileSize = 0;
         this.spritesAmtX = 1;
         this.spritesAmtY = 1;
@@ -161,6 +165,7 @@ public class Sprite implements Cloneable{
 
 
         this.size = size;
+        this.edgeChecker = this.size*2;
         this.tileSize = 0;
         this.spritesAmtX = 1;
         this.spritesAmtY = 1;
@@ -246,6 +251,7 @@ public class Sprite implements Cloneable{
 
     public void setSize(int size) {
         this.size = size;
+        this.edgeChecker = this.size*2;
         this.centerX = this.size/2;
         this.centerY = this.size/2;
     }
@@ -264,11 +270,6 @@ public class Sprite implements Cloneable{
         this.rotation = Math.toRadians(degree);
     }
 
-//    public static Sprite trimSprite(BufferedImage sprite)
-//    {
-//        this.sprite = sprite;
-//    }
-
     public void setXSpriteIndex(int index)
     {
         this.xSpriteIndex = index % spritesAmtX;
@@ -281,7 +282,6 @@ public class Sprite implements Cloneable{
         this.ySpriteIndex = index % spritesAmtY;
 
         this.img = this.sprite.getSubimage(this.tileSize * this.xSpriteIndex, this.tileSize * this.ySpriteIndex, this.tileSize, this.tileSize );
-        this.addRotation(5);
 
     }
 
@@ -400,77 +400,83 @@ public class Sprite implements Cloneable{
 
     public void draw(Graphics2D g2)
     {
-        if(this.animate == true)
+        if(this.pos.isInside(0-this.edgeChecker,mp.screenWidth+this.edgeChecker,0-this.edgeChecker,mp.screenHeight+this.edgeChecker))
         {
-            if(this.loop == true)
+        //?!?
+
+            if(this.animate == true)
             {
-                if(this.lastAnimationTime == 0)
+                if(this.loop == true)
                 {
-                    this.ySpriteIndex = this.aniStartIndex;
-                }
+                    if(this.lastAnimationTime == 0)
+                    {
+                        this.ySpriteIndex = this.aniStartIndex;
+                    }
 
-                if(this.ySpriteIndex+1 > this.aniEndIndex)
-                {
-                    this.ySpriteIndex = this.aniStartIndex;
-                }
+                    if(this.ySpriteIndex+1 > this.aniEndIndex)
+                    {
+                        this.ySpriteIndex = this.aniStartIndex;
+                    }
 
-                if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
+                    if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
+                    {
+                        this.setYSpriteIndex( (this.ySpriteIndex+1) );
+                        lastAnimationTime = System.nanoTime();
+                    }
+                }
+                else
                 {
-                    this.setYSpriteIndex( (this.ySpriteIndex+1) );
-                    lastAnimationTime = System.nanoTime();
+                    if(this.lastAnimationTime == 0)
+                    {
+                        this.ySpriteIndex = this.aniStartIndex;
+                    }
+
+                    if(this.ySpriteIndex+1 > this.aniEndIndex)
+                    {
+                        this.pause();
+                    }
+
+                    if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
+                    {
+                        this.setYSpriteIndex( (this.ySpriteIndex+1) );
+                        lastAnimationTime = System.nanoTime();
+                    }
+                }
+            }
+
+            if(this.rotation == 0)
+            {
+                if(this.flipX == false && this.flipY == false)
+                {
+                    g2.drawImage(img, this.pos.screenX, this.pos.screenY,this.size,this.size, null);
+                }
+                else if(this.flipX == true && this.flipY == false)
+                {
+                    g2.drawImage(img, this.pos.screenX+this.size, this.pos.screenY,-this.size,this.size, null);
+                }
+                else if(this.flipX == false && this.flipY == true)
+                {
+                    g2.drawImage(img, this.pos.screenX, this.pos.screenY+this.size,this.size,-this.size, null);
+                }
+                else
+                {
+                    g2.drawImage(img, this.pos.screenX+this.size, this.pos.screenY+this.size,-this.size,-this.size, null);
                 }
             }
             else
             {
-                if(this.lastAnimationTime == 0)
-                {
-                    this.ySpriteIndex = this.aniStartIndex;
-                }
+                //! Funziona la rotazione ma mi sembra che non sia ancora centrata perfettamente
+                AffineTransform at = new AffineTransform();
+                at.translate(this.pos.screenX - (this.centerX), this.pos.screenY - (this.centerY));
+                at.rotate(this.rotation);
+                at.translate(-this.centerX, -this.centerX);
 
-                if(this.ySpriteIndex+1 > this.aniEndIndex)
-                {
-                    this.pause();
-                }
+                g2.drawImage(img,at,null);
 
-                if((System.nanoTime() - lastAnimationTime) >= animationSpeed)
-                {
-                    this.setYSpriteIndex( (this.ySpriteIndex+1) );
-                    lastAnimationTime = System.nanoTime();
-                }
             }
+
+        //!?!
         }
-
-        if(this.rotation == 0)
-        {
-            if(this.flipX == false && this.flipY == false)
-            {
-                g2.drawImage(img, this.pos.screenX, this.pos.screenY,this.size,this.size, null);
-            }
-            else if(this.flipX == true && this.flipY == false)
-            {
-                g2.drawImage(img, this.pos.screenX+this.size, this.pos.screenY,-this.size,this.size, null);
-            }
-            else if(this.flipX == false && this.flipY == true)
-            {
-                g2.drawImage(img, this.pos.screenX, this.pos.screenY+this.size,this.size,-this.size, null);
-            }
-            else
-            {
-                g2.drawImage(img, this.pos.screenX+this.size, this.pos.screenY+this.size,-this.size,-this.size, null);
-            }
-        }
-        else
-        {
-            //! Funziona la rotazione ma mi sembra che non sia ancora centrata perfettamente 
-            AffineTransform at = new AffineTransform();
-            at.translate(this.pos.screenX - (this.centerX), this.pos.screenY - (this.centerY));
-            at.rotate(this.rotation);
-            at.translate(-this.centerX, -this.centerX);
-
-            g2.drawImage(img,at,null);
-
-        }
-
     }
 
     //---- Extra ---------------------------------------------------------------------------------------------------------------
